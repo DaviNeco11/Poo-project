@@ -26,10 +26,22 @@ public class AcademiaGUI extends JFrame {
     private ArrayList<Instrutor> instrutores;
     private ArrayList<Aula> aulas;
 
+    private PersisteAluno persisteAluno;
+    private PersisteInstrutor persisteInstrutor;
+    private PersisteAula persisteAula;
+
     public AcademiaGUI() {
         alunos = new ArrayList<>();
         instrutores = new ArrayList<>();
         aulas = new ArrayList<>();
+
+        persisteAluno = new PersisteAluno("aluno.txt");
+        persisteInstrutor = new PersisteInstrutor("instrutor.txt");
+        persisteAula = new PersisteAula("aula.txt");
+
+        alunos = persisteAluno.carregaDados(null);
+        instrutores = persisteInstrutor.carregaDados(null);
+        aulas = persisteAula.carregaDados(instrutores);
 
         setTitle("Sistema de Academia");
         setSize(400, 300);
@@ -189,8 +201,9 @@ public class AcademiaGUI extends JFrame {
             String telefone = telefoneField.getText();
             PlanoDeTreino planoDeTreino = new PlanoDeTreino(planoTreinoField.getText());
 
-            Aluno aluno = new Aluno(nome, idade, cpf, telefone, Aluno.contador, planoDeTreino);
+            Aluno aluno = new Aluno(nome, idade, cpf, telefone, planoDeTreino);
             alunos.add(aluno);
+            persisteAluno.persisteDados(aluno);
             outputArea.append(aluno.toString() + "\n");
         });
 
@@ -289,6 +302,7 @@ public class AcademiaGUI extends JFrame {
 
             Instrutor instrutor = new Instrutor(nome, idade, cpf, telefone, especialidade);
             instrutores.add(instrutor);
+            persisteInstrutor.persisteDados(instrutor);
             outputArea.append(instrutor.toString() + "\n");
         });
 
@@ -383,6 +397,7 @@ public class AcademiaGUI extends JFrame {
             if (instrutor != null) {
                 Aula aula = new Aula(tipo, horario, instrutor);
                 aulas.add(aula);
+                persisteAula.persisteDados(aula);
                 outputArea.append(aula.toString() + "\n");
             } else {
                 outputArea.append("Instrutor não encontrado.\n");

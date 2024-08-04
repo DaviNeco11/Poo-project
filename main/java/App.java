@@ -19,7 +19,7 @@ public class App {
 
         // Testando a classe Aluno:
         System.out.println("Testando a classe Aluno - ");
-        Aluno aluno1 = new Aluno("davi", 19, "3219832", "31298382901", 891, plano);
+        Aluno aluno1 = new Aluno("davi", 19, "3219832", "31298382901", plano);
         System.out.println(aluno1);
         System.out.println(aluno1.getPlanoDeTreino());
 

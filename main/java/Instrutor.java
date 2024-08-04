@@ -4,13 +4,15 @@ import java.util.ArrayList;
 public class Instrutor extends Pessoa {
     
     private String especialidade;
+    private int id;
     protected static int contadorInstrutor = 0;
     private ArrayList<String> horarios;
     
     public Instrutor(String nome, int idade, String cpf, String telefone, String especialidade){
         super(nome, idade, cpf, telefone);
         this.especialidade = especialidade;
-        contadorInstrutor ++;
+        this.id = contadorInstrutor;
+        contadorInstrutor++;
         horarios = new ArrayList<>();
         }
 
@@ -34,4 +36,16 @@ public class Instrutor extends Pessoa {
         System.out.println();
     }
 
+    public int getId(){
+        return this.id;
+    }
+
+    public String toPersistencia(){
+        return this.getNome() + ";"
+                + this.getIdade() + ";"
+                + this.getCpf() + ";"
+                + this.getTelefone() + ";"
+                + this.especialidade + ";"
+                + this.id;
+    }
 }

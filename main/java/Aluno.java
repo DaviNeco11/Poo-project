@@ -4,7 +4,7 @@ public class Aluno extends Pessoa {
     protected static int contador = 1;
     private PlanoDeTreino planoDeTreino;
     
-    public Aluno(String nome, int idade, String cpf, String telefone, int numMatricula, PlanoDeTreino planoDeTreino){
+    public Aluno(String nome, int idade, String cpf, String telefone, PlanoDeTreino planoDeTreino){
         super(nome, idade, cpf, telefone);
         this.numMatricula = contador;
         contador++;
@@ -26,6 +26,15 @@ public class Aluno extends Pessoa {
     public PlanoDeTreino getPlanoDeTreino(){
         planoDeTreino.toString();
         return planoDeTreino;
+    }
+
+    public String toPersistencia(){
+        return this.getNome() + ";"
+                + this.getIdade() + ";"
+                + this.getCpf() + ";"
+                + this.getTelefone() + ";"
+                + this.numMatricula + ";"
+                + this.planoDeTreino.getDificuldade();
     }
 
 }

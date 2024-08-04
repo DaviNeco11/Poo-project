@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 
 public class PlanoDeTreino {
+    private int id;
+    protected static int contador = 1;
     private String dificuldade;
     private ArrayList<String> exercicios;
 
     PlanoDeTreino(String dificuldade){
+        this.id = contador;
+        contador++;
         this.dificuldade = dificuldade;
         exercicios = new ArrayList<>();
     }
@@ -26,6 +30,8 @@ public class PlanoDeTreino {
             System.out.println(exercicio);
         }
     }
+
+    public int getId(){return this.id;}
 
     public String toString(){
         StringBuilder sb = new StringBuilder();

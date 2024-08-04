@@ -37,6 +37,10 @@ public class Aula {
         return "Tipo da aula: " + tipo + ", Horário da Aula: " + horario + ", Instrutor Responsável - \n" + responsavel;
     }
 
-    
+    public String toPersistencia(){
+        return this.tipo + ";"
+                + this.horario + ";"
+                + this.responsavel.getNome();
+    }
 }
 
