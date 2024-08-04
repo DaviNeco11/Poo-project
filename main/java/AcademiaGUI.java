@@ -6,6 +6,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+/**
+ * Representa a interface gráfica do sistema de academia.
+ * O Menu de chegada possui o botões de navegação para o Menu Principal e para sair do programa.
+ * O Menu Principal possui as opções de gerenciar alunos, instrutores e aulas, além do botão de voltar à tela anterior.
+ * Cada gerenciador permite criar um novo objeto, listar o existentes e retornar ao Menu Principal.
+ */
 public class AcademiaGUI extends JFrame {
 
     private CardLayout cardLayout;
@@ -30,6 +36,11 @@ public class AcademiaGUI extends JFrame {
     private PersisteInstrutor persisteInstrutor;
     private PersisteAula persisteAula;
 
+    /**
+     * Cria e configura os painéis para a interface gráfica da academia, incluindo os painéis para
+     * gerenciamento de alunos, instrutores e aulas, bem como para adicionar novos registros e
+     * listar existentes.
+     */
     public AcademiaGUI() {
         alunos = new ArrayList<>();
         instrutores = new ArrayList<>();
@@ -80,6 +91,9 @@ public class AcademiaGUI extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Cria o painel inicial da aplicação com um título e dois botões: "Menu Principal" e "Sair".
+     */
     private void createInitialPanel() {
         initialPanel = new JPanel(new BorderLayout());
         JLabel titleLabel = new JLabel("Academia", JLabel.CENTER);
@@ -98,6 +112,10 @@ public class AcademiaGUI extends JFrame {
         initialPanel.add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Cria o painel do menu principal com botões para gerenciar alunos, instrutores e aulas,
+     * além de um botão para voltar ao painel inicial.
+     */
     private void createMenuPanel() {
         menuPanel = new JPanel(new GridLayout(4, 1));
 
@@ -118,6 +136,10 @@ public class AcademiaGUI extends JFrame {
         menuPanel.add(backButton);
     }
 
+    /**
+     * Cria o painel para gerenciar alunos com opções para adicionar um novo aluno,
+     * mostrar a lista de alunos e voltar ao menu principal.
+     */
     private void createManageAlunosPanel() {
         manageAlunosPanel = new JPanel(new GridLayout(3, 1));
 
@@ -134,6 +156,10 @@ public class AcademiaGUI extends JFrame {
         manageAlunosPanel.add(backButton);
     }
 
+    /**
+     * Cria o painel para gerenciar instrutores com opções para adicionar um novo instrutor,
+     * mostrar a lista de instrutores e voltar ao menu principal.
+     */
     private void createManageInstrutoresPanel() {
         manageInstrutoresPanel = new JPanel(new GridLayout(3, 1));
 
@@ -150,6 +176,10 @@ public class AcademiaGUI extends JFrame {
         manageInstrutoresPanel.add(backButton);
     }
 
+    /**
+     * Cria o painel para gerenciar aulas com opções para adicionar uma nova aula,
+     * mostrar a lista de aulas e voltar ao menu principal.
+     */
     private void createManageAulasPanel() {
         manageAulasPanel = new JPanel(new GridLayout(3, 1));
 
@@ -166,6 +196,21 @@ public class AcademiaGUI extends JFrame {
         manageAulasPanel.add(backButton);
     }
 
+    /**
+     * Cria e configura o painel para adicionar um novo aluno.
+     *
+     * Este método inicializa o painel `addAlunoPanel` com um layout de borda e adiciona um painel de formulário no centro.
+     * O painel de formulário contém campos de texto para o nome, idade, CPF, telefone e plano de treino do aluno, além de um
+     * botão para adicionar o aluno e outro para voltar ao painel de gerenciamento de alunos. Também inclui uma área de texto
+     * para exibir informações sobre o aluno adicionado.
+     *
+     * O botão "Adicionar Aluno" coleta os dados dos campos de texto, cria um objeto `Aluno` com esses dados e o adiciona à
+     * lista de alunos. Os dados do aluno são persistidos usando o objeto `persisteAluno`. A área de texto é atualizada para
+     * exibir a representação do aluno adicionado.
+     *
+     * O método também configura um adaptador de teclado para permitir a navegação entre os campos de texto usando a tecla Enter
+     * e acionar a ação do botão "Adicionar Aluno" ao pressionar Enter no campo de texto do plano de treino.
+     */
     private void createAddAlunoPanel() {
         addAlunoPanel = new JPanel(new BorderLayout());
 
@@ -244,6 +289,16 @@ public class AcademiaGUI extends JFrame {
         planoTreinoField.addKeyListener(keyAdapter);
     }
 
+    /**
+     * Cria e configura o painel para listar todos os alunos.
+     *
+     * Este método inicializa o painel `listAlunosPanel` com um layout de borda e adiciona uma área de texto no centro para
+     * exibir a lista de alunos. Um botão "Atualizar Lista" é adicionado no topo para atualizar a lista de alunos exibida na
+     * área de texto. Outro botão "Voltar" é adicionado na parte inferior para retornar ao painel de gerenciamento de alunos.
+     *
+     * O botão "Atualizar Lista" limpa a área de texto e itera sobre a lista de alunos, adicionando a representação de cada
+     * aluno à área de texto.
+     */
     private void createListAlunosPanel() {
         listAlunosPanel = new JPanel(new BorderLayout());
         JTextArea outputArea = new JTextArea();
@@ -265,6 +320,21 @@ public class AcademiaGUI extends JFrame {
         listAlunosPanel.add(backButton, BorderLayout.SOUTH);
     }
 
+    /**
+     * Cria e configura o painel para adicionar um novo instrutor.
+     *
+     * Este método inicializa o painel `addInstrutorPanel` com um layout de borda e adiciona um painel de formulário no centro.
+     * O painel de formulário contém campos de texto para o nome, idade, CPF, telefone e especialidade do instrutor, além de um
+     * botão para adicionar o instrutor e outro para voltar ao painel de gerenciamento de instrutores. Também inclui uma área de texto
+     * para exibir informações sobre o instrutor adicionado.
+     *
+     * O botão "Adicionar Instrutor" coleta os dados dos campos de texto, cria um objeto `Instrutor` com esses dados e o adiciona à
+     * lista de instrutores. Os dados do instrutor são persistidos usando o objeto `persisteInstrutor`. A área de texto é atualizada para
+     * exibir a representação do instrutor adicionado.
+     *
+     * O método também configura um adaptador de teclado para permitir a navegação entre os campos de texto usando a tecla Enter
+     * e acionar a ação do botão "Adicionar Instrutor" ao pressionar Enter no campo de texto da especialidade.
+     */
     private void createAddInstrutorPanel() {
         addInstrutorPanel = new JPanel(new BorderLayout());
 
@@ -343,6 +413,16 @@ public class AcademiaGUI extends JFrame {
         especialidadeField.addKeyListener(keyAdapter);
     }
 
+    /**
+     * Cria e configura o painel para listar todos os instrutores.
+     *
+     * Este método inicializa o painel `listInstrutoresPanel` com um layout de borda e adiciona uma área de texto no centro para
+     * exibir a lista de instrutores. Um botão "Atualizar Lista" é adicionado no topo para atualizar a lista de instrutores exibida na
+     * área de texto. Outro botão "Voltar" é adicionado na parte inferior para retornar ao painel de gerenciamento de instrutores.
+     *
+     * O botão "Atualizar Lista" limpa a área de texto e itera sobre a lista de instrutores, adicionando a representação de cada
+     * instrutor à área de texto.
+     */
     private void createListInstrutoresPanel() {
         listInstrutoresPanel = new JPanel(new BorderLayout());
         JTextArea outputArea = new JTextArea();
@@ -364,6 +444,18 @@ public class AcademiaGUI extends JFrame {
         listInstrutoresPanel.add(backButton, BorderLayout.SOUTH);
     }
 
+    /**
+     * Cria e inicializa o painel para adicionar uma nova aula no aplicativo.
+     * Este painel inclui campos para inserir o tipo da aula, o horário e o instrutor.
+     * Também contém um botão para adicionar a aula ao sistema e outro para navegar de volta
+     * ao menu de gerenciamento de aulas.
+     *
+     * É feita uma validação para verificar se o instrutor responsável fornecido existe para adicionar a nova aula
+     *
+     * O painel é estruturado com um formulário para inserir os detalhes e uma área de saída
+     * para exibir feedback. Um listener de tecla é adicionado para permitir o envio do formulário
+     * pressionando a tecla Enter.
+     */
     private void createAddAulaPanel() {
         addAulaPanel = new JPanel(new BorderLayout());
 
@@ -435,6 +527,15 @@ public class AcademiaGUI extends JFrame {
         instrutorField.addKeyListener(keyAdapter);
     }
 
+
+    /**
+     * Cria e inicializa o painel para listar todas as aulas no aplicativo.
+     * Este painel inclui uma área de texto para exibir a lista de aulas e botões para atualizar
+     * a lista ou voltar ao menu de gerenciamento de aulas.
+     *
+     * O botão de atualizar atualiza a lista exibida de aulas e o botão de voltar retorna
+     * ao menu de gerenciamento de aulas.
+     */
     private void createListAulasPanel() {
         listAulasPanel = new JPanel(new BorderLayout());
         JTextArea outputArea = new JTextArea();
@@ -456,6 +557,10 @@ public class AcademiaGUI extends JFrame {
         listAulasPanel.add(backButton, BorderLayout.SOUTH);
     }
 
+    /**
+     * Classe principal que inicializa a interface gráfica.
+     * @param args Argumentos da função main.
+     */
     public static void main(String[] args) {
         new AcademiaGUI();
     }
